@@ -1,18 +1,22 @@
 import {useRef} from "react"
-import QuizHeading from "../../shared/QuizHeading"
 import {useDispatch, useSelector} from "react-redux"
+
+import QuizHeading from "../../shared/QuizHeading"
 import {changeTheme} from "../../app/Theme/themeSlice"
+import {useNavigate} from "react-router-dom"
 
 const MainPage = () => {
 	const formRef = useRef()
 	const dispatch = useDispatch()
 	const {enabled} = useSelector((state) => state.theme)
+	const navigate = useNavigate()
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
 		const getFormData = new FormData(event.target)
 		const userName = getFormData.get("userName")
 		formRef.current.reset()
+		navigate("/quiz")
 	}
 
 	return (
