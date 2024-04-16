@@ -1,8 +1,12 @@
 import {useRef} from "react"
 import QuizHeading from "../../shared/QuizHeading"
+import {useDispatch, useSelector} from "react-redux"
+import {changeTheme} from "../../app/Theme/themeSlice"
 
 const MainPage = () => {
 	const formRef = useRef()
+	const dispatch = useDispatch()
+	const {enabled} = useSelector((state) => state.theme)
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
@@ -38,6 +42,15 @@ const MainPage = () => {
 					Start Quiz
 				</button>
 			</form>
+
+			<button
+				onClick={() => {
+					dispatch(changeTheme(!enabled))
+				}}
+				className="bg-black my-4 text-white px-8 py-4 font-Poppins font-semibold rounded-lg hover:bg-transparent border-2 border-black hover:text-black transition-all duration-300"
+			>
+				{enabled ? "Dark" : "light"}
+			</button>
 		</div>
 	)
 }
