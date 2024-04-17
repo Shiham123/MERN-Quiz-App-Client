@@ -2,8 +2,8 @@ import {useRef} from "react"
 import {useDispatch, useSelector} from "react-redux"
 
 import QuizHeading from "../../shared/QuizHeading"
-import {changeTheme} from "../../app/Theme/themeSlice"
 import {useNavigate} from "react-router-dom"
+import {changeTheme} from "../../app/Theme/themeSlice"
 
 const MainPage = () => {
 	const formRef = useRef()
