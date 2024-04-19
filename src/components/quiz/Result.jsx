@@ -2,6 +2,7 @@ import PropTypes from "prop-types"
 import QuizHeading from "../../shared/QuizHeading"
 import QuizBtn from "../../shared/QuizBtn"
 import {Link} from "react-router-dom"
+import ResultTable from "./ResultTable"
 
 const PerDiv = ({userName, actions}) => (
 	<div className="flex justify-between items-center my-8">
@@ -31,6 +32,9 @@ const Result = () => {
 			<Link to={"/"} onClick={handleRestart}>
 				<QuizBtn startQuizBtnText="Restart" />
 			</Link>
+
+			{/* Result table  */}
+			<ResultTable />
 		</div>
 	)
 }
