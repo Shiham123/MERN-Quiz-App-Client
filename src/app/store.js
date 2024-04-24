@@ -1,11 +1,17 @@
-import {configureStore} from "@reduxjs/toolkit"
+import {configureStore, combineReducers} from "@reduxjs/toolkit"
 import logger from "redux-logger"
 import themeSlice from "./Theme/themeSlice"
 import questionSlice from "./services/questionSlice"
 import resultSlice from "./services/resultSlice"
 
+const rootReducer = combineReducers({
+	theme: themeSlice,
+	question: questionSlice,
+	result: resultSlice,
+})
+
 const store = configureStore({
-	reducer: {theme: themeSlice, question: questionSlice, result: resultSlice},
+	reducer: rootReducer,
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 })
 

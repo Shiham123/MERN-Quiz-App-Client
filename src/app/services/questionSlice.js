@@ -1,11 +1,11 @@
 import {createSlice} from "@reduxjs/toolkit"
 
 const questionSlice = createSlice({
-	name: "result",
+	name: "question",
 	initialState: {queue: [], answer: [], trace: 0},
 	reducers: {
-		startExamAction: (state, action) => {
-			return {...state, queue: action.payload}
+		startExamAction: (state, {payload}) => {
+			return {...state, queue: payload}
 		},
 	},
 })

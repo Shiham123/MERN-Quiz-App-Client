@@ -4,8 +4,8 @@ import QuizHeading from "../../shared/QuizHeading"
 import Questions from "../questions/Questions"
 
 const Quiz = () => {
-	const state = useSelector((state) => state)
-	console.log(state)
+	const {trace, answer, queue} = useSelector((state) => state.question)
+	const {result, userId} = useSelector((state) => state.result)
 
 	const handleNextQuiz = () => {}
 	const handlePrevQuiz = () => {}
