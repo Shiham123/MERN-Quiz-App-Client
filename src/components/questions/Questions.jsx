@@ -1,29 +1,25 @@
 import {useState} from "react"
 import useFetchQuestion from "../../hooks/useFetchQuestion.jsx"
+import {useSelector} from "react-redux"
 
 const Questions = () => {
-	const [getData, setGetData] = useFetchQuestion()
+	const [{apiData, isLoading, serverError}] = useFetchQuestion()
 	const [checked, setChecked] = useState(false)
+	const {queue, trace} = useSelector((state) => state.question)
 
-	const handleChooseAnswer = () => {
-		setChecked(true)
-	}
+	const handleChooseAnswer = () => setChecked(true)
 
-	if (!getData.apiData || getData.apiData.length === 0) {
-		return <div>Loading...</div>
-	}
+	if (isLoading) return <div>...Loading</div>
+	if (serverError) return <div>Server error</div>
+	if (!apiData || apiData.length == 0) return <div>...API loading</div>
 
-	const question = getData.apiData[0]
-
-	if (!question.options || question.options.length === 0) {
-		return <div>No options available for this question.</div>
-	}
+	const question = queue[trace]
 
 	return (
 		<div>
-			<h2 className="font-Poppins text-2xl font-semibold">Simple Question</h2>
-			<ul key={question.id}>
-				{question.options.map((item, index) => (
+			<h2 className="font-Poppins text-2xl font-semibold">{question?.question}</h2>
+			<ul key={question?.id}>
+				{question?.options?.map((item, index) => (
 					<li key={index} className="flex justify-end items-center gap-4 flex-row-reverse">
 						<div>
 							<input

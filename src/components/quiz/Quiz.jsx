@@ -1,12 +1,8 @@
-import {useSelector} from "react-redux"
 import QuizBtn from "../../shared/QuizBtn"
 import QuizHeading from "../../shared/QuizHeading"
 import Questions from "../questions/Questions"
 
 const Quiz = () => {
-	const {trace, answer, queue} = useSelector((state) => state.question)
-	const {result, userId} = useSelector((state) => state.result)
-
 	const handleNextQuiz = () => {}
 	const handlePrevQuiz = () => {}
 
