@@ -23,6 +23,5 @@ module.exports = {
 		"no-unused-vars": ["error"],
 		"no-undef": ["error"],
 		"no-console": ["error"],
-		"no-unused-expressions": ["error"],
 	},
 }

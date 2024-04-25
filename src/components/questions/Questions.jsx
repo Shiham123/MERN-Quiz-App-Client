@@ -4,10 +4,14 @@ import {useSelector} from "react-redux"
 
 const Questions = () => {
 	const [{apiData, isLoading, serverError}] = useFetchQuestion()
-	const [checked, setChecked] = useState(false)
 	const {queue, trace} = useSelector((state) => state.question)
 
-	const handleChooseAnswer = () => setChecked(true)
+	const [selectedItem, setSelectedItem] = useState("")
+	const [selectedIdx, setSelectedIdx] = useState(0)
+
+	const handleChooseAnswer = (index, item) => {
+		setSelectedItem(item), setSelectedIdx(index)
+	}
 
 	// API tracing
 	if (isLoading) return <div>...Loading</div>
@@ -28,7 +32,7 @@ const Questions = () => {
 								id={`q${index}-option`}
 								value={false}
 								name="options"
-								onChange={handleChooseAnswer}
+								onChange={() => handleChooseAnswer(index, item)}
 								className="appearance-none"
 							/>
 							<label
@@ -39,7 +43,7 @@ const Questions = () => {
 							</label>
 						</div>
 						<div className="w-6 h-6 rounded-full border-4 border-gray-300 relative">
-							{checked && (
+							{selectedItem === item && selectedIdx == index && (
 								<div className="absolute top-[2px] left-[2px] bg-gray-400 w-3 h-3 rounded-full"></div>
 							)}
 						</div>
