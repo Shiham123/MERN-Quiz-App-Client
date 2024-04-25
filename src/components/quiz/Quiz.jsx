@@ -2,14 +2,12 @@ import {useDispatch} from "react-redux"
 import QuizBtn from "../../shared/QuizBtn"
 import QuizHeading from "../../shared/QuizHeading"
 import Questions from "../questions/Questions"
-import {moveNextAction} from "../../app/services/questionSlice"
+import {moveNextAction, moveToPrevAction} from "../../app/services/questionSlice"
 
 const Quiz = () => {
 	const dispatch = useDispatch()
-
 	const handleNextQuiz = () => dispatch(moveNextAction())
-
-	const handlePrevQuiz = () => {}
+	const handlePrevQuiz = () => dispatch(moveToPrevAction())
 
 	return (
 		<div className="max-w-xl mx-auto my-10 flex justify-center items-center flex-col">
