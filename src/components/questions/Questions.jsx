@@ -9,6 +9,7 @@ const Questions = () => {
 
 	const handleChooseAnswer = () => setChecked(true)
 
+	// API tracing
 	if (isLoading) return <div>...Loading</div>
 	if (serverError) return <div>Server error</div>
 	if (!apiData || apiData.length == 0) return <div>...API loading</div>

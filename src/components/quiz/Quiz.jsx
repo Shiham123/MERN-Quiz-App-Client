@@ -1,9 +1,14 @@
+import {useDispatch} from "react-redux"
 import QuizBtn from "../../shared/QuizBtn"
 import QuizHeading from "../../shared/QuizHeading"
 import Questions from "../questions/Questions"
+import {moveNextAction} from "../../app/services/questionSlice"
 
 const Quiz = () => {
-	const handleNextQuiz = () => {}
+	const dispatch = useDispatch()
+
+	const handleNextQuiz = () => dispatch(moveNextAction())
+
 	const handlePrevQuiz = () => {}
 
 	return (

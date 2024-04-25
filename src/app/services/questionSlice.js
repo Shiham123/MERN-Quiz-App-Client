@@ -7,8 +7,11 @@ const questionSlice = createSlice({
 		startExamAction: (state, {payload}) => {
 			return {...state, queue: payload}
 		},
+		moveNextAction: (state) => {
+			return {...state, trace: state.trace + 1}
+		},
 	},
 })
 
-export const {startExamAction} = questionSlice.actions
+export const {startExamAction, moveNextAction} = questionSlice.actions
 export default questionSlice.reducer
