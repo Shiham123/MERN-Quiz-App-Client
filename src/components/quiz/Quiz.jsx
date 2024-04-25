@@ -1,12 +1,17 @@
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import QuizBtn from "../../shared/QuizBtn"
 import QuizHeading from "../../shared/QuizHeading"
 import Questions from "../questions/Questions"
 import {moveNextAction, moveToPrevAction} from "../../app/services/questionSlice"
+import {pushResultAction} from "../../app/services/resultSlice"
 
 const Quiz = () => {
+	const {answer} = useSelector((state) => state.question)
 	const dispatch = useDispatch()
-	const handleNextQuiz = () => dispatch(moveNextAction())
+
+	const handleNextQuiz = () => {
+		dispatch(moveNextAction()), dispatch(pushResultAction(answer.index))
+	}
 	const handlePrevQuiz = () => dispatch(moveToPrevAction())
 
 	return (

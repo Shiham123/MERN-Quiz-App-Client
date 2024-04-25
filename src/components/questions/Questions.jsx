@@ -1,16 +1,18 @@
 import {useState} from "react"
 import useFetchQuestion from "../../hooks/useFetchQuestion.jsx"
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
+import {selectedValue} from "../../app/services/questionSlice.js"
 
 const Questions = () => {
 	const [{apiData, isLoading, serverError}] = useFetchQuestion()
 	const {queue, trace} = useSelector((state) => state.question)
+	const dispatch = useDispatch()
 
 	const [selectedItem, setSelectedItem] = useState("")
 	const [selectedIdx, setSelectedIdx] = useState(0)
 
 	const handleChooseAnswer = (index, item) => {
-		setSelectedItem(item), setSelectedIdx(index)
+		setSelectedItem(item), setSelectedIdx(index), dispatch(selectedValue({item, index}))
 	}
 
 	// API tracing

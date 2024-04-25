@@ -14,8 +14,12 @@ const questionSlice = createSlice({
 		moveToPrevAction: (state) => {
 			if (state.trace > 0) return {...state, trace: state.trace - 1}
 		},
+		selectedValue: (state, {payload}) => {
+			state.answer = payload
+		},
 	},
 })
 
-export const {startExamAction, moveNextAction, moveToPrevAction} = questionSlice.actions
+export const {startExamAction, moveNextAction, moveToPrevAction, selectedValue} =
+	questionSlice.actions
 export default questionSlice.reducer
