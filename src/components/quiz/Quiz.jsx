@@ -1,14 +1,14 @@
 import {useDispatch, useSelector} from "react-redux"
+import {Navigate} from "react-router-dom"
 
 // components
 import QuizBtn from "../../shared/QuizBtn"
 import QuizHeading from "../../shared/QuizHeading"
 import Questions from "../questions/Questions"
 
-// redux
+// redux components
 import {moveNextAction, moveToPrevAction} from "../../app/services/questionSlice"
 import {pushResultAction} from "../../app/services/resultSlice"
-import {Navigate} from "react-router-dom"
 
 const Quiz = () => {
 	const {answer, queue, result} = useSelector((state) => ({

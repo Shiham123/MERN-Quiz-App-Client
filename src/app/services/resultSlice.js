@@ -10,8 +10,11 @@ const resultSlice = createSlice({
 		pushResultAction: (state, {payload}) => {
 			state.result.push(payload)
 		},
+		resetResultAction: () => {
+			return {userId: null, result: []}
+		},
 	},
 })
 
-export const {setUserId, pushResultAction} = resultSlice.actions
+export const {setUserId, pushResultAction, resetResultAction} = resultSlice.actions
 export default resultSlice.reducer

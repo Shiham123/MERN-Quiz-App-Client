@@ -3,6 +3,9 @@ import QuizHeading from "../../shared/QuizHeading"
 import QuizBtn from "../../shared/QuizBtn"
 import {Link} from "react-router-dom"
 import ResultTable from "./ResultTable"
+import {useDispatch} from "react-redux"
+import {resetResultAction} from "../../app/services/resultSlice"
+import {resetAllAction} from "../../app/services/questionSlice"
 
 const PerDiv = ({userName, actions}) => (
 	<div className="flex justify-between items-center my-8">
@@ -12,7 +15,10 @@ const PerDiv = ({userName, actions}) => (
 )
 
 const Result = () => {
-	const handleRestart = () => {}
+	const dispatch = useDispatch()
+	const handleRestart = () => {
+		dispatch(resetResultAction(), resetAllAction())
+	}
 
 	return (
 		<div className="max-w-xl mx-auto my-10 flex justify-center items-center flex-col">

@@ -17,9 +17,12 @@ const questionSlice = createSlice({
 		selectedValue: (state, {payload}) => {
 			state.answer = payload
 		},
+		resetAllAction: () => {
+			return {queue: [], answer: [], trace: 0}
+		},
 	},
 })
 
-export const {startExamAction, moveNextAction, moveToPrevAction, selectedValue} =
+export const {startExamAction, moveNextAction, moveToPrevAction, selectedValue, resetAllAction} =
 	questionSlice.actions
 export default questionSlice.reducer
