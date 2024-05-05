@@ -8,9 +8,10 @@ import Questions from "../questions/Questions"
 // redux
 import {moveNextAction, moveToPrevAction} from "../../app/services/questionSlice"
 import {pushResultAction} from "../../app/services/resultSlice"
+import {Navigate} from "react-router-dom"
 
 const Quiz = () => {
-	const {answer} = useSelector((state) => ({
+	const {answer, queue, result} = useSelector((state) => ({
 		answer: state.question.answer,
 		queue: state.question.queue,
 		result: state.result.result,
@@ -21,6 +22,10 @@ const Quiz = () => {
 		dispatch(moveNextAction()), dispatch(pushResultAction(answer.index))
 	}
 	const handlePrevQuiz = () => dispatch(moveToPrevAction())
+
+	if (result.length && result.length >= queue.length) {
+		return <Navigate to={`/result`} replace={true} />
+	}
 
 	return (
 		<div className="max-w-xl mx-auto my-10 flex justify-center items-center flex-col">
