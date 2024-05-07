@@ -11,16 +11,22 @@ import {moveNextAction, moveToPrevAction} from "../../app/services/questionSlice
 import {pushResultAction} from "../../app/services/resultSlice"
 
 const Quiz = () => {
-	const {answer, queue, result} = useSelector((state) => ({
+	const {answer, queue, result, trace} = useSelector((state) => ({
 		answer: state.question.answer,
 		queue: state.question.queue,
 		result: state.result.result,
+		trace: state.question.trace,
 	}))
+
+	console.log(result)
+
 	const dispatch = useDispatch()
 
 	const handleNextQuiz = () => {
-		dispatch(moveNextAction()), dispatch(pushResultAction(answer.index))
+		dispatch(moveNextAction())
+		if (result.length <= trace) dispatch(pushResultAction(answer.index))
 	}
+
 	const handlePrevQuiz = () => dispatch(moveToPrevAction())
 
 	if (result.length && result.length >= queue.length) {
