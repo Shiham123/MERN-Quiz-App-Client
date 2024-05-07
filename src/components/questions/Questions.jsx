@@ -1,15 +1,26 @@
-import {useState} from "react"
-import useFetchQuestion from "../../hooks/useFetchQuestion.jsx"
+import {useEffect, useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
+
+// api calling component/ or custom hook
+import useFetchQuestion from "../../hooks/useFetchQuestion.jsx"
+
+// redux action import
 import {selectedValue} from "../../app/services/questionSlice.js"
+import {updateResultAction} from "../../app/services/resultSlice.js"
 
 const Questions = () => {
-	const [{apiData, isLoading, serverError}] = useFetchQuestion()
-	const {queue, trace} = useSelector((state) => state.question)
+	const [{apiData, isLoading, serverError}] = useFetchQuestion() // api fetching data
+	const {queue, trace} = useSelector((state) => state.question) // getting value from selector
+
 	const dispatch = useDispatch()
 
+	// checked state control
 	const [selectedItem, setSelectedItem] = useState("")
 	const [selectedIdx, setSelectedIdx] = useState(0)
+
+	useEffect(() => {
+		dispatch(updateResultAction({trace, checked: {selectedIdx}}))
+	}, [dispatch, trace, selectedIdx])
 
 	const handleChooseAnswer = (index, item) => {
 		setSelectedItem(item), setSelectedIdx(index), dispatch(selectedValue({item, index}))

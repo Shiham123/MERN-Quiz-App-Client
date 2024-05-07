@@ -1,9 +1,15 @@
 import PropTypes from "prop-types"
+import {useDispatch} from "react-redux"
+import {Link} from "react-router-dom"
+
+// shared component
 import QuizHeading from "../../shared/QuizHeading"
 import QuizBtn from "../../shared/QuizBtn"
-import {Link} from "react-router-dom"
+
+// component
 import ResultTable from "./ResultTable"
-import {useDispatch} from "react-redux"
+
+// redux action
 import {resetResultAction} from "../../app/services/resultSlice"
 import {resetAllAction} from "../../app/services/questionSlice"
 
@@ -16,6 +22,8 @@ const PerDiv = ({userName, actions}) => (
 
 const Result = () => {
 	const dispatch = useDispatch()
+
+	// reset the all action
 	const handleRestart = () => {
 		dispatch(resetResultAction(), resetAllAction())
 	}
