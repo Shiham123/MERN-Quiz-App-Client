@@ -18,8 +18,6 @@ const Quiz = () => {
 		trace: state.question.trace,
 	}))
 
-	console.log(result)
-
 	const dispatch = useDispatch()
 
 	const handleNextQuiz = () => {
