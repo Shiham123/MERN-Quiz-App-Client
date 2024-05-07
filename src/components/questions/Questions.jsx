@@ -10,7 +10,11 @@ import {updateResultAction} from "../../app/services/resultSlice.js"
 
 const Questions = () => {
 	const [{apiData, isLoading, serverError}] = useFetchQuestion() // api fetching data
-	const {queue, trace} = useSelector((state) => state.question) // getting value from selector
+	const {queue, trace, result} = useSelector((state) => ({
+		queue: state.question.queue,
+		trace: state.question.trace,
+		result: state.result.result,
+	})) // getting value from selector
 
 	const dispatch = useDispatch()
 
@@ -56,8 +60,16 @@ const Questions = () => {
 							</label>
 						</div>
 						<div className="w-6 h-6 rounded-full border-4 border-gray-300 relative">
-							{selectedItem === item && selectedIdx == index && (
-								<div className="absolute top-[2px] left-[2px] bg-gray-400 w-3 h-3 rounded-full"></div>
+							{selectedItem === item ? (
+								<div
+									className={`absolute top-[2px] left-[2px] bg-gray-400 w-3 h-3 rounded-full`}
+								></div>
+							) : result[trace] === index ? (
+								<div
+									className={`absolute top-[2px] left-[2px] bg-gray-400 w-3 h-3 rounded-full`}
+								></div>
+							) : (
+								<></>
 							)}
 						</div>
 					</li>

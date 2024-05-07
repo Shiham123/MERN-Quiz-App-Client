@@ -1,5 +1,5 @@
 import {configureStore, combineReducers} from "@reduxjs/toolkit"
-import logger from "redux-logger"
+// import logger from "redux-logger"
 import themeSlice from "./Theme/themeSlice"
 import questionSlice from "./services/questionSlice"
 import resultSlice from "./services/resultSlice"
