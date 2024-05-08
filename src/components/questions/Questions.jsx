@@ -7,6 +7,7 @@ import useFetchQuestion from "../../hooks/useFetchQuestion.jsx"
 // redux action import
 import {selectedValue} from "../../app/services/questionSlice.js"
 import {updateResultAction} from "../../app/services/resultSlice.js"
+import {isQuizCheck} from "../../app/Theme/themeSlice.js"
 
 const Questions = () => {
 	const [{apiData, isLoading, serverError}] = useFetchQuestion()
@@ -27,7 +28,10 @@ const Questions = () => {
 	}, [dispatch, trace, selectedIdx])
 
 	const handleChooseAnswer = (index, item) => {
-		setSelectedItem(item), setSelectedIdx(index), dispatch(selectedValue({item, index}))
+		setSelectedItem(item),
+			setSelectedIdx(index),
+			dispatch(selectedValue({item, index})),
+			dispatch(isQuizCheck(true))
 	}
 
 	// API tracing
