@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react"
-import data from "../database/data.js"
+import data, {answer} from "../database/data.js"
 import {useDispatch} from "react-redux"
 import {startExamAction} from "../app/services/questionSlice"
 
@@ -13,8 +13,8 @@ const useFetchQuestion = () => {
 			try {
 				let question = await data
 				if (question.length > 0) {
-					setGetData((prev) => ({...prev, apiData: question, isLoading: false}))
-					dispatch(startExamAction(question))
+					setGetData((prev) => ({...prev, apiData: {question, answer}, isLoading: false}))
+					dispatch(startExamAction({question, answer}))
 				} else {
 					throw new Error("no question available")
 				}

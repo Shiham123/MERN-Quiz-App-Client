@@ -1,8 +1,8 @@
 import {configureStore, combineReducers} from "@reduxjs/toolkit"
-import logger from "redux-logger"
 import themeSlice from "./Theme/themeSlice"
 import questionSlice from "./services/questionSlice"
 import resultSlice from "./services/resultSlice"
+import logger from "redux-logger"
 
 const rootReducer = combineReducers({
 	theme: themeSlice,
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
 
 const store = configureStore({
 	reducer: rootReducer,
-	// middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 })
 
 export default store

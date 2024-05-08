@@ -5,7 +5,8 @@ const questionSlice = createSlice({
 	initialState: {queue: [], answer: [], trace: 0},
 	reducers: {
 		startExamAction: (state, {payload}) => {
-			return {...state, queue: payload}
+			const {question, answer} = payload
+			return {...state, queue: question, answer: answer}
 		},
 		moveNextAction: (state) => {
 			if (state.trace > state.queue.length - 2) return {...state, trace: 0}
