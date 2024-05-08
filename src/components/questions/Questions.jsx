@@ -9,12 +9,12 @@ import {selectedValue} from "../../app/services/questionSlice.js"
 import {updateResultAction} from "../../app/services/resultSlice.js"
 
 const Questions = () => {
-	const [{apiData, isLoading, serverError}] = useFetchQuestion() // api fetching data
+	const [{apiData, isLoading, serverError}] = useFetchQuestion()
 	const {queue, trace, result} = useSelector((state) => ({
 		queue: state.question.queue,
 		trace: state.question.trace,
 		result: state.result.result,
-	})) // getting value from selector
+	}))
 
 	const dispatch = useDispatch()
 

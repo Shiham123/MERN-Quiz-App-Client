@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {Link} from "react-router-dom"
 
 // shared component
@@ -21,6 +21,13 @@ const PerDiv = ({userName, actions}) => (
 )
 
 const Result = () => {
+	const {queue, result, correctAnswers} = useSelector((state) => ({
+		queue: state.question.queue,
+		result: state.result.result,
+		correctAnswers: state.question.correctAnswers,
+		userId: state.result.userId,
+	}))
+
 	const dispatch = useDispatch()
 
 	// reset the all action
@@ -43,8 +50,8 @@ const Result = () => {
 			</div>
 
 			{/* Restart quiz actions */}
-			<Link to={"/"} onClick={handleRestart}>
-				<QuizBtn startQuizBtnText="Restart" />
+			<Link to={"/"}>
+				<QuizBtn startQuizBtnText="Restart" onClick={handleRestart} />
 			</Link>
 
 			{/* Result table  */}
