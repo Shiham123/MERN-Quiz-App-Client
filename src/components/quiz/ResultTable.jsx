@@ -1,4 +1,7 @@
-const ResultTable = () => {
+import PropTypes from "prop-types"
+
+const ResultTable = (props) => {
+	const {userResult} = props
 	return (
 		<div className="overflow-x-auto my-10">
 			<table className="table-auto border-collapse border border-gray-400">
@@ -17,7 +20,7 @@ const ResultTable = () => {
 						<td className="border border-gray-400 px-4 py-2">Daily tuition</td>
 						<td className="border border-gray-400 px-4 py-2">03</td>
 						<td className="border border-gray-400 px-4 py-2">20</td>
-						<td className="border border-gray-400 px-4 py-2">Passed</td>
+						<td className="border border-gray-400 px-4 py-2">{userResult}</td>
 					</tr>
 					{/* Add more <tr> for additional rows */}
 				</tbody>
@@ -27,3 +30,5 @@ const ResultTable = () => {
 }
 
 export default ResultTable
+
+ResultTable.propTypes = {userResult: PropTypes.string.isRequired}

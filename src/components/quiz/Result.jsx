@@ -1,10 +1,10 @@
-import PropTypes from "prop-types"
 import {useDispatch, useSelector} from "react-redux"
 import {Link} from "react-router-dom"
 
 // shared component
 import QuizHeading from "../../shared/QuizHeading"
 import QuizBtn from "../../shared/QuizBtn"
+import PerDiv from "../../shared/PerDiv"
 
 // component
 import ResultTable from "./ResultTable"
@@ -12,20 +12,16 @@ import ResultTable from "./ResultTable"
 // redux action
 import {resetResultAction} from "../../app/services/resultSlice"
 import {resetAllAction} from "../../app/services/questionSlice"
-
-const PerDiv = ({userName, actions}) => (
-	<div className="flex justify-between items-center my-8">
-		<h2 className="font-Poppins text-2xl font-semibold">{actions}</h2>
-		<p className="font-Poppins text-xl tracking-widest">{userName}</p>
-	</div>
-)
+import {useEffect} from "react"
+import {getFinalResult} from "../../app/Theme/themeSlice"
 
 const Result = () => {
-	const {queue, result, correctAnswers} = useSelector((state) => ({
+	const {result, correctAnswers, finalResult} = useSelector((state) => ({
 		queue: state.question.queue,
 		result: state.result.result,
 		correctAnswers: state.question.correctAnswers,
 		userId: state.result.userId,
+		finalResult: state.theme.finalResult,
 	}))
 
 	const dispatch = useDispatch()
@@ -34,6 +30,21 @@ const Result = () => {
 	const handleRestart = () => {
 		dispatch(resetResultAction(), resetAllAction())
 	}
+
+	useEffect(() => {
+		let isTrue = 0,
+			isFalse = 0
+
+		for (let i = 0; i < result.length; i++) {
+			if (result[i] === correctAnswers[i]) {
+				isTrue++
+			} else {
+				isFalse++
+			}
+		}
+
+		dispatch(getFinalResult({trueValue: isTrue, falseValue: isFalse}))
+	}, [dispatch, correctAnswers, result])
 
 	return (
 		<div className="max-w-xl mx-auto my-10 flex justify-center items-center flex-col">
@@ -55,11 +66,9 @@ const Result = () => {
 			</Link>
 
 			{/* Result table  */}
-			<ResultTable />
+			<ResultTable userResult={finalResult} />
 		</div>
 	)
 }
 
 export default Result
-
-PerDiv.propTypes = {userName: PropTypes.string.isRequired, actions: PropTypes.string.isRequired}
