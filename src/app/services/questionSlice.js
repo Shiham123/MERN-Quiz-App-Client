@@ -2,11 +2,11 @@ import {createSlice} from "@reduxjs/toolkit"
 
 const questionSlice = createSlice({
 	name: "question",
-	initialState: {queue: [], answer: [], trace: 0},
+	initialState: {queue: [], answer: [], trace: 0, correctAnswers: []},
 	reducers: {
 		startExamAction: (state, {payload}) => {
 			const {question, answer} = payload
-			return {...state, queue: question, answer: answer}
+			return {...state, queue: question, correctAnswers: answer}
 		},
 		moveNextAction: (state) => {
 			if (state.trace > state.queue.length - 2) return {...state, trace: 0}
