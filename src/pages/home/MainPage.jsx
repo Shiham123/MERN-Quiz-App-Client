@@ -1,22 +1,21 @@
 import {useRef} from "react"
+import {Link} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 
 import QuizHeading from "../../shared/QuizHeading"
-import {useNavigate} from "react-router-dom"
 import {changeTheme} from "../../app/Theme/themeSlice"
+import {setUserId} from "../../app/services/resultSlice"
 
 const MainPage = () => {
-	const formRef = useRef()
+	const inputRef = useRef(null)
+
 	const dispatch = useDispatch()
 	const {enabled} = useSelector((state) => state.theme)
-	const navigate = useNavigate()
 
-	const handleSubmit = (event) => {
-		event.preventDefault()
-		const getFormData = new FormData(event.target)
-		const userName = getFormData.get("userName")
-		formRef.current.reset()
-		navigate("/quiz")
+	const handleStartQuiz = () => {
+		if (inputRef.current?.value) {
+			dispatch(setUserId(inputRef.current?.value))
+		}
 	}
 
 	return (
@@ -31,20 +30,24 @@ const MainPage = () => {
 				<li>The result will be declared at the end of the quiz</li>
 			</ul>
 
-			<form className="flex flex-col" ref={formRef} onSubmit={handleSubmit}>
+			<form className="flex flex-col">
 				<input
 					name="userName"
 					type="text"
 					placeholder="Type your name"
 					className="border-2 border-black px-8 py-4 outline-0 m-4 font-Poppins font-semibold rounded-lg"
+					ref={inputRef}
 				/>
 
-				<button
-					type="submit"
-					className="bg-black text-white px-8 py-4 font-Poppins font-semibold rounded-lg hover:bg-transparent border-2 border-black hover:text-black transition-all duration-300"
-				>
-					Start Quiz
-				</button>
+				<Link to={`/quiz`}>
+					<button
+						onClick={handleStartQuiz}
+						type="submit"
+						className="bg-black text-white px-8 py-4 font-Poppins font-semibold rounded-lg hover:bg-transparent border-2 border-black hover:text-black transition-all duration-300"
+					>
+						Start Quiz
+					</button>
+				</Link>
 			</form>
 
 			<button
