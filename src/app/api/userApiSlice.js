@@ -1,12 +1,15 @@
+// userApiSlice.js
+
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query"
 
-// Define the API service
 export const userApiSlice = createApi({
 	reducerPath: "userApiSlice",
-	baseQuery: fetchBaseQuery({baseUrl: "http://localhost:3000/api/"}),
+	baseQuery: fetchBaseQuery({baseUrl: "http://localhost:3000"}),
 	endpoints: (builder) => ({
-		getAllUser: builder.query({query: () => "user"}),
+		getUser: builder.query({
+			query: () => "/api/user",
+		}),
 	}),
 })
 
-export const {useGetAllUserQuery} = userApiSlice
+export const {useGetUserQuery} = userApiSlice
