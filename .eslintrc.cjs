@@ -14,8 +14,6 @@ module.exports = {
 	rules: {
 		"react/jsx-no-target-blank": "off",
 		"react-refresh/only-export-components": ["warn", {allowConstantExport: true}],
-		"no-console": ["error"],
-		"no-var": ["error"],
 		"block-scoped-var": ["error"],
 		camelcase: ["error"],
 		"require-await": ["error"],
