@@ -1,18 +1,16 @@
-import {configureStore, combineReducers} from "@reduxjs/toolkit"
-import themeSlice from "./Theme/themeSlice"
-import questionSlice from "./services/questionSlice"
-import resultSlice from "./services/resultSlice"
+import {configureStore} from "@reduxjs/toolkit"
+import themeReducer from "../app/Theme/themeSlice"
+import questionReducer from "../app/services/questionSlice"
+import resultReducer from "../app/services/resultSlice"
 import {userApiSlice} from "./api/userApiSlice"
 
-const rootReducer = combineReducers({
-	[userApiSlice.reducerPath]: userApiSlice.reducer,
-	theme: themeSlice,
-	question: questionSlice,
-	result: resultSlice,
-})
-
 const store = configureStore({
-	reducer: rootReducer,
+	reducer: {
+		theme: themeReducer,
+		question: questionReducer,
+		result: resultReducer,
+		[userApiSlice.reducerPath]: userApiSlice.reducer,
+	},
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([userApiSlice.middleware]),
 })
 
