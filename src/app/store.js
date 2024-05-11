@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
 
 const store = configureStore({
 	reducer: rootReducer,
-	// middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([addUserApi.middleware]),
+	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([userApiSlice.middleware]),
 })
 
 export default store
