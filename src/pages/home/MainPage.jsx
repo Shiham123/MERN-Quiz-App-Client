@@ -5,10 +5,10 @@ import {useDispatch, useSelector} from "react-redux"
 import QuizHeading from "../../shared/QuizHeading"
 import {changeTheme} from "../../app/Theme/themeSlice"
 import {setUserId} from "../../app/services/resultSlice"
-import {useGetAllUserQuery} from "../../app/api/userApi"
+import {useCreateUserMutation} from "../../app/api/userApi"
 
 const MainPage = () => {
-	const {data: user} = useGetAllUserQuery()
+	const [createUser, {isLoading}] = useCreateUserMutation()
 
 	const inputRef = useRef(null)
 
@@ -17,9 +17,11 @@ const MainPage = () => {
 
 	const handleStartQuiz = () => {
 		if (inputRef.current?.value) {
-			dispatch(setUserId(inputRef.current?.value))
+			dispatch(setUserId(inputRef.current?.value)), createUser(inputRef.current?.value)
 		}
 	}
+
+	if (isLoading) return <p>...loading</p>
 
 	return (
 		<div className="max-w-xl mx-auto my-10 flex justify-center items-center flex-col">
