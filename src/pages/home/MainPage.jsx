@@ -5,8 +5,11 @@ import {useDispatch, useSelector} from "react-redux"
 import QuizHeading from "../../shared/QuizHeading"
 import {changeTheme} from "../../app/Theme/themeSlice"
 import {setUserId} from "../../app/services/resultSlice"
+import {useGetAllUserQuery} from "../../app/api/userApi"
 
 const MainPage = () => {
+	const {data: user} = useGetAllUserQuery()
+
 	const inputRef = useRef(null)
 
 	const dispatch = useDispatch()
