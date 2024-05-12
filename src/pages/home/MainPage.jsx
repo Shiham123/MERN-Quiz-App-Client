@@ -1,14 +1,14 @@
-import {useRef} from "react"
-import {Link} from "react-router-dom"
+import {useRef, useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
 
 import QuizHeading from "../../shared/QuizHeading"
 import {changeTheme} from "../../app/Theme/themeSlice"
-import {setUserId} from "../../app/services/resultSlice"
-import {useCreateUserMutation} from "../../app/api/userApi"
+// import {setUserId} from "../../app/services/resultSlice"
+// import {useCreateUserMutation} from "../../app/api/userApi"
 
 const MainPage = () => {
-	const [createUser, {isLoading}] = useCreateUserMutation()
+	// const [createUser, {isLoading}] = useCreateUserMutation()
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	const inputRef = useRef(null)
 
@@ -17,11 +17,15 @@ const MainPage = () => {
 
 	const handleStartQuiz = () => {
 		if (inputRef.current?.value) {
-			dispatch(setUserId(inputRef.current?.value)), createUser(inputRef.current?.value)
+			// dispatch(setUserId(inputRef.current?.value)), createUser(inputRef.current?.value)
+			setIsModalOpen(true)
+			setTimeout(() => {
+				setIsModalOpen(false)
+			}, 5000)
 		}
 	}
 
-	if (isLoading) return <p>...loading</p>
+	// if (isLoading) return <p>...loading</p>
 
 	return (
 		<div className="max-w-xl mx-auto my-10 flex justify-center items-center flex-col">
@@ -44,15 +48,13 @@ const MainPage = () => {
 					ref={inputRef}
 				/>
 
-				<Link to={`/quiz`}>
-					<button
-						onClick={handleStartQuiz}
-						type="submit"
-						className="bg-black text-white px-8 py-4 font-Poppins font-semibold rounded-lg hover:bg-transparent border-2 border-black hover:text-black transition-all duration-300"
-					>
-						Start Quiz
-					</button>
-				</Link>
+				<button
+					onClick={handleStartQuiz}
+					type="submit"
+					className="bg-black text-white px-8 py-4 font-Poppins font-semibold rounded-lg hover:bg-transparent border-2 border-black hover:text-black transition-all duration-300"
+				>
+					Start Quiz
+				</button>
 			</form>
 
 			<button
@@ -63,6 +65,12 @@ const MainPage = () => {
 			>
 				{enabled ? "Dark" : "light"}
 			</button>
+
+			{isModalOpen && (
+				<div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
+					<p className="bg-white text-black px-12 py-20">...loading</p>
+				</div>
+			)}
 		</div>
 	)
 }
