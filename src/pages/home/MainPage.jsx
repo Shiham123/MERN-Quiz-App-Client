@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux"
 
 import QuizHeading from "../../shared/QuizHeading"
 import {changeTheme} from "../../app/Theme/themeSlice"
+import Modal from "../../shared/Modal"
 // import {setUserId} from "../../app/services/resultSlice"
 // import {useCreateUserMutation} from "../../app/api/userApi"
 
@@ -15,17 +16,17 @@ const MainPage = () => {
 	const dispatch = useDispatch()
 	const {enabled} = useSelector((state) => state.theme)
 
-	const handleStartQuiz = () => {
-		if (inputRef.current?.value) {
-			// dispatch(setUserId(inputRef.current?.value)), createUser(inputRef.current?.value)
-			setIsModalOpen(true)
-			setTimeout(() => {
-				setIsModalOpen(false)
-			}, 5000)
-		}
-	}
+	// const handleStartQuiz = () => {
+	// 	if (inputRef.current?.value) {
+	// 		dispatch(setUserId(inputRef.current?.value)), createUser(inputRef.current?.value)
+	// 	}
+	// }
 
 	// if (isLoading) return <p>...loading</p>
+
+	const handleCheckUserParticipate = () => {
+		setIsModalOpen(true)
+	}
 
 	return (
 		<div className="max-w-xl mx-auto my-10 flex justify-center items-center flex-col">
@@ -47,15 +48,16 @@ const MainPage = () => {
 					className="border-2 border-black px-8 py-4 outline-0 m-4 font-Poppins font-semibold rounded-lg"
 					ref={inputRef}
 				/>
-
-				<button
-					onClick={handleStartQuiz}
-					type="submit"
-					className="bg-black text-white px-8 py-4 font-Poppins font-semibold rounded-lg hover:bg-transparent border-2 border-black hover:text-black transition-all duration-300"
-				>
-					Start Quiz
-				</button>
+				{/* here are submit check form */}
 			</form>
+
+			<button
+				onClick={handleCheckUserParticipate}
+				type="submit"
+				className="bg-black text-white px-8 py-4 font-Poppins font-semibold rounded-lg hover:bg-transparent border-2 border-black hover:text-black transition-all duration-300"
+			>
+				Start Quiz
+			</button>
 
 			<button
 				onClick={() => {
@@ -68,7 +70,7 @@ const MainPage = () => {
 
 			{isModalOpen && (
 				<div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
-					<p className="bg-white text-black px-12 py-20">...loading</p>
+					<Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
 				</div>
 			)}
 		</div>
