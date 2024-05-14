@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import ModalImg from "../../public/svg/undraw_join_re_w1lh (1).svg"
+import ModalImg from "../assets/svg/undraw_join_re_w1lh (1).svg"
 
 const Modal = (props) => {
 	const {isModalOpen, setIsModalOpen} = props
