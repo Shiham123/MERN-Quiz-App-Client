@@ -4,7 +4,7 @@ import Styles from "../../scss/Home.module.scss"
 
 const Home = () => {
 	return (
-		<div className={Styles.homeSection}>
+		<div className={`${Styles.homeSection} flex py-[9rem]`}>
 			<Illustration />
 			<MainPage />
 		</div>
