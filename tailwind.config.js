@@ -1,6 +1,16 @@
-/** @type {import('tailwindcss').Config} */
 export default {
 	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-	theme: {extend: {fontFamily: {Poppins: ["Poppins", "sans-serif"]}}},
-	plugins: [],
+	theme: {
+		screens: {
+			xs: {min: "375px", max: "639px"},
+			sm: {min: "640px", max: "767px"},
+			md: {min: "768px", max: "1023px"},
+			lg: {min: "1024px", max: "1279px"},
+			xl: {min: "1280px", max: "1535px"},
+			"2xl": {min: "1536px"},
+		},
+		extend: {fontFamily: {Poppins: ["Poppins", "sans-serif"]}},
+	},
+	// eslint-disable-next-line no-undef
+	plugins: [require("tailwind-scrollbar-hide")],
 }
