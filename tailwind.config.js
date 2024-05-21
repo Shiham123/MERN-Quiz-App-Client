@@ -9,7 +9,7 @@ export default {
 			xl: {min: "1280px", max: "1535px"},
 			"2xl": {min: "1536px"},
 		},
-		extend: {},
+		extend: {fontFamily: {Poppins: ["Poppins", "sans-serif"]}},
 	},
 	// eslint-disable-next-line no-undef
 	plugins: [require("tailwind-scrollbar-hide")],
