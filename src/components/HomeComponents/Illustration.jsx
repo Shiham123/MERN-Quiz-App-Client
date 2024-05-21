@@ -3,7 +3,7 @@ import SideImg from "../../assets/Img/side.png"
 const Illustration = () => {
 	return (
 		<div>
-			<img src={SideImg} alt="" />
+			<img className="w-fit" src={SideImg} alt="" />
 		</div>
 	)
 }
