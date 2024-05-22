@@ -29,10 +29,10 @@ const MainPage = () => {
 	}
 
 	return (
-		<div className="max-w-xl mx-auto my-10 flex justify-center items-center flex-col">
+		<div className="w-1/2 my-10 flex justify-center items-center flex-col">
 			<QuizHeading headerText="Quiz Application" />
 
-			<ul className="list-decimal font-Poppins p-6 flex flex-col gap-4 text-xl">
+			<ul className="list-disc font-Poppins p-6 flex flex-col gap-4 text-2xl font-semibold bg-white">
 				<li>You will be asked 10 questions one after another.</li>
 				<li>10 Points is awarded for the correct answer.</li>
 				<li>Each question has three options. You can choose only one options</li>
