@@ -17,7 +17,7 @@ const MainPage = () => {
 	// }
 
 	return (
-		<div className="2xl:w-1/2 xl:w-1/2 lg:w-1/2 md:w-full sm:w-full xs:w-full my-10 flex justify-center items-center flex-col">
+		<div className="my-10 flex justify-center items-center flex-col">
 			<QuizHeading headerText="Quiz Application" />
 			<Rules />
 			<ParticipateForm />
