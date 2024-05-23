@@ -3,8 +3,6 @@ import Modal from "../../shared/Modal"
 import Rules from "./Rules"
 import ParticipateForm from "./ParticipateForm"
 import {useSelector} from "react-redux"
-// import {setUserId} from "../../app/services/resultSlice"
-// import {useCreateUserMutation} from "../../app/api/userApi"
 
 const MainPage = () => {
 	const {isModalOpen} = useSelector((state) => state.theme)
