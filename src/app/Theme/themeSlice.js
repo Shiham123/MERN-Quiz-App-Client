@@ -2,10 +2,13 @@ import {createSlice} from "@reduxjs/toolkit"
 
 const themeSlice = createSlice({
 	name: "theme",
-	initialState: {enabled: true, isCheck: false, finalResult: ""},
+	initialState: {enabled: true, isCheck: false, finalResult: "", isModalOpen: false},
 	reducers: {
 		changeTheme: (state, {payload}) => {
 			state.enabled = payload
+		},
+		modalOpen: (state, {payload}) => {
+			state.isModalOpen = payload
 		},
 		isQuizCheck: (state, {payload}) => {
 			state.isCheck = payload
@@ -22,5 +25,5 @@ const themeSlice = createSlice({
 	},
 })
 
-export const {changeTheme, isQuizCheck, getFinalResult} = themeSlice.actions
+export const {changeTheme, isQuizCheck, getFinalResult, modalOpen} = themeSlice.actions
 export default themeSlice.reducer

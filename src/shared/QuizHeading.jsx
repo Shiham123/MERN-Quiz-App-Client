@@ -4,7 +4,7 @@ const QuizHeading = (props) => {
 	const {headerText} = props
 
 	return (
-		<div className="flex justify-center items-center text-5xl font-semibold border-4 border-yellow-400 p-4 w-[1000px]">
+		<div className="flex justify-center items-center font-extrabold font-Poppins text-6xl py-4">
 			{headerText}
 		</div>
 	)

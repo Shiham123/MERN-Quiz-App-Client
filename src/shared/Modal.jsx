@@ -1,8 +1,11 @@
 import PropTypes from "prop-types"
-import ModalImg from "../assets/svg/undraw_join_re_w1lh (1).svg"
+import ModalImg from "../assets/svg/undraw_join_re_w1lh.svg"
+import {ClockLoader} from "react-spinners"
+import {useDispatch} from "react-redux"
+import {modalOpen} from "../app/Theme/themeSlice"
 
-const Modal = (props) => {
-	const {isModalOpen, setIsModalOpen} = props
+const Modal = () => {
+	const dispatch = useDispatch()
 
 	return (
 		<div className="px-10 bg-white rounded-lg flex justify-center items-center lg:flex-row md:flex-col flex-col">
@@ -14,12 +17,14 @@ const Modal = (props) => {
 				</h1>
 				<p className="text-xl font-Poppins capitalize opacity-70">Pleas try with different name</p>
 				<button
-					onClick={() => setIsModalOpen(!isModalOpen)}
+					onClick={() => dispatch(modalOpen(false))}
 					className="bg-[#6c63ff] px-4 py-2 m-8 rounded-lg text-white font-Poppins text-[17px] capitalize hover:bg-transparent hover:border-[2px] hover:border-[#6c63ff] hover:text-[#6c63ff] hover:font-semibold transition-all duration-200"
 				>
 					Close the modal
 				</button>
 			</div>
+
+			<ClockLoader color="#bc343e" />
 		</div>
 	)
 }
