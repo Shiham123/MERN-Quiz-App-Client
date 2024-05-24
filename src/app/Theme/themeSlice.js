@@ -19,7 +19,6 @@ const themeSlice = createSlice({
 		},
 		loaderOpen: (state, {payload}) => {
 			state.isLoaderOpen = payload
-			state.isModalOpen = payload
 		},
 		isQuizCheck: (state, {payload}) => {
 			state.isCheck = payload

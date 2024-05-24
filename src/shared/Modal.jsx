@@ -5,13 +5,20 @@ import {motion} from "framer-motion"
 import ModalImg from "../assets/svg/undraw_join_re_w1lh.svg"
 
 // redux slice
-import {modalOpen} from "../app/Theme/themeSlice"
+import {loaderOpen, modalOpen} from "../app/Theme/themeSlice"
 import {ClockLoader} from "react-spinners"
+import {useEffect} from "react"
 
 const Modal = () => {
 	const {isLoaderOpen} = useSelector((state) => state.theme)
 
 	const dispatch = useDispatch()
+
+	useEffect(() => {
+		setTimeout(() => {
+			dispatch(loaderOpen(false))
+		}, 3000)
+	}, [dispatch])
 
 	return (
 		<motion.div
@@ -28,8 +35,16 @@ const Modal = () => {
 					</p>
 				</>
 			) : (
-				<>
-					<img src={ModalImg} className="px-4 py-8 w-1/2 h-1/2 rounded-lg" alt="" />
+				<motion.div
+					initial={{opacity: 0, x: 100}}
+					animate={{opacity: 1, x: 0}}
+					transition={{type: "spring", stiffness: 100, damping: 10}}
+				>
+					<img
+						src={ModalImg}
+						className="px-4 py-8 w-1/2 h-1/2 rounded-lg m-auto text-center"
+						alt=""
+					/>
 
 					<div className="flex justify-center items-center flex-col">
 						<h1 className="text-2xl font-Poppins capitalize py-8 text-[#bc343e] font-semibold">
@@ -45,7 +60,7 @@ const Modal = () => {
 							Back to home page
 						</button>
 					</div>
-				</>
+				</motion.div>
 			)}
 		</motion.div>
 	)
