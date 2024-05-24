@@ -1,16 +1,35 @@
+// ParticipateForm.jsx
 import {useRef} from "react"
 import {FaArrowRightLong} from "react-icons/fa6"
 import {useDispatch} from "react-redux"
 import {modalOpen} from "../../app/Theme/themeSlice"
+import {setUserId} from "../../app/services/resultSlice"
+import {useCreateUserMutation} from "../../app/api/userApi"
+import {ClockLoader} from "react-spinners"
 
 const ParticipateForm = () => {
+	const [createUser, {isLoading}] = useCreateUserMutation()
 	const dispatch = useDispatch()
 	const inputRef = useRef(null)
 
 	const submitCheckUserParticipate = (event) => {
 		event.preventDefault()
-		dispatch(modalOpen(true))
+		const username = inputRef.current.value
+		dispatch(setUserId(username))
+		createUser({username})
+			.then((res) => {
+				if (res.data.success === true) {
+					dispatch(modalOpen(true))
+				}
+
+				if (res.error) {
+					dispatch(modalOpen(false))
+				}
+			})
+			.catch((err) => new Error(err))
 	}
+
+	if (isLoading) return <ClockLoader color="#bc343e" size={100} loading={true} />
 
 	return (
 		<>

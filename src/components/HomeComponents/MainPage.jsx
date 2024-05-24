@@ -6,13 +6,6 @@ import {useSelector} from "react-redux"
 
 const MainPage = () => {
 	const {isModalOpen} = useSelector((state) => state.theme)
-	// const [createUser, {isLoading}] = useCreateUserMutation()
-
-	// const handleStartQuiz = () => {
-	// 	if (inputRef.current?.value) {
-	// 		dispatch(setUserId(inputRef.current?.value)), createUser(inputRef.current?.value)
-	// 	}
-	// }
 
 	return (
 		<div className="my-10 flex justify-center items-center flex-col">

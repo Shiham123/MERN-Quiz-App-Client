@@ -1,10 +1,13 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit"
+import logger from "redux-logger"
 
+// state slice
 import themeSlice from "./Theme/themeSlice"
 import questionSlice from "./services/questionSlice"
 import resultSlice from "./services/resultSlice"
+
+// Api slice
 import {userApi} from "./api/userApi"
-import logger from "redux-logger"
 
 const rootReducer = combineReducers({
 	theme: themeSlice,

@@ -5,20 +5,14 @@ import {motion} from "framer-motion"
 import ModalImg from "../assets/svg/undraw_join_re_w1lh.svg"
 
 // redux slice
-import {loaderOpen, modalOpen} from "../app/Theme/themeSlice"
 import {ClockLoader} from "react-spinners"
-import {useEffect} from "react"
+import {modalOpen} from "../app/Theme/themeSlice"
 
 const Modal = () => {
-	const {isLoaderOpen} = useSelector((state) => state.theme)
-
+	const {isLoaderOpen} = useSelector((state) => ({
+		isLoaderOpen: state.theme.isLoaderOpen,
+	}))
 	const dispatch = useDispatch()
-
-	useEffect(() => {
-		setTimeout(() => {
-			dispatch(loaderOpen(false))
-		}, 3000)
-	}, [dispatch])
 
 	return (
 		<motion.div
