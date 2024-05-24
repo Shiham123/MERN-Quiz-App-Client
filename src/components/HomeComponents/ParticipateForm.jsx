@@ -17,8 +17,10 @@ const ParticipateForm = () => {
 
 	const submitCheckUserParticipate = (event) => {
 		event.preventDefault()
-		const username = inputRef.current.value
+		const username = inputRef.current.value.toLowerCase().replace(/\s+/g, "")
+
 		dispatch(setUserId(username))
+
 		createUser({username})
 			.then((res) => {
 				const success = res?.data?.success ?? res.error?.data?.success
