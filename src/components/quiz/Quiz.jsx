@@ -3,7 +3,6 @@ import {Navigate} from "react-router-dom"
 
 // components
 import QuizBtn from "../../shared/QuizBtn"
-import QuizHeading from "../../shared/QuizHeading"
 import Questions from "../questions/Questions"
 
 // redux components
@@ -37,8 +36,6 @@ const Quiz = () => {
 
 	return (
 		<div className="max-w-xl mx-auto my-10 flex justify-center items-center flex-col">
-			<QuizHeading headerText="Quiz section" />
-
 			<Questions />
 
 			<div className="flex justify-between items-center gap-8 my-12">

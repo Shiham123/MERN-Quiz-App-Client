@@ -2,9 +2,8 @@ import {createBrowserRouter} from "react-router-dom"
 import MainLayout from "../layout/MainLayout"
 import ErrorPage from "../pages/Error/ErrorPage"
 import Home from "../pages/home/Home"
-import Quiz from "../components/quiz/Quiz"
 import Result from "../components/quiz/Result"
-import PrivateRoute from "./PrivateRoute"
+import QuizPage from "../components/quiz/QuizPage"
 
 const router = createBrowserRouter([
 	{
@@ -16,9 +15,9 @@ const router = createBrowserRouter([
 			{
 				path: "/quiz",
 				element: (
-					<PrivateRoute>
-						<Quiz />
-					</PrivateRoute>
+					// <PrivateRoute>
+					<QuizPage />
+					// </PrivateRoute>
 				),
 			},
 			{path: "/result", element: <Result />},
