@@ -3,21 +3,12 @@ import Modal from "../../shared/Modal"
 import Rules from "./Rules"
 import ParticipateForm from "./ParticipateForm"
 import {useSelector} from "react-redux"
-// import {setUserId} from "../../app/services/resultSlice"
-// import {useCreateUserMutation} from "../../app/api/userApi"
 
 const MainPage = () => {
 	const {isModalOpen} = useSelector((state) => state.theme)
-	// const [createUser, {isLoading}] = useCreateUserMutation()
-
-	// const handleStartQuiz = () => {
-	// 	if (inputRef.current?.value) {
-	// 		dispatch(setUserId(inputRef.current?.value)), createUser(inputRef.current?.value)
-	// 	}
-	// }
 
 	return (
-		<div className="2xl:w-1/2 xl:w-1/2 lg:w-1/2 md:w-full sm:w-full xs:w-full my-10 flex justify-center items-center flex-col">
+		<div className="my-10 flex justify-center items-center flex-col">
 			<QuizHeading headerText="Quiz Application" />
 			<Rules />
 			<ParticipateForm />
