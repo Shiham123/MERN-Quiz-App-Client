@@ -1,11 +1,14 @@
-// ParticipateForm.jsx
 import {useRef} from "react"
 import {FaArrowRightLong} from "react-icons/fa6"
 import {useDispatch} from "react-redux"
+
+// redux slice
 import {modalOpen} from "../../app/Theme/themeSlice"
 import {setUserId} from "../../app/services/resultSlice"
+
+// mutations
 import {useCreateUserMutation} from "../../app/api/userApi"
-import {ClockLoader} from "react-spinners"
+import Loader from "../../shared/Loader"
 
 const ParticipateForm = () => {
 	const [createUser, {isLoading}] = useCreateUserMutation()
@@ -18,18 +21,24 @@ const ParticipateForm = () => {
 		dispatch(setUserId(username))
 		createUser({username})
 			.then((res) => {
-				if (res.data.success === true) {
-					dispatch(modalOpen(true))
-				}
+				const success = res?.data?.success ?? res.error?.data?.success
+				switch (success) {
+					case true:
+						dispatch(modalOpen(false))
+						break
 
-				if (res.error) {
-					dispatch(modalOpen(false))
+					case false:
+						dispatch(modalOpen(true))
+						break
+
+					default:
+						throw new Error("an unexpected error occurred")
 				}
 			})
 			.catch((err) => new Error(err))
 	}
 
-	if (isLoading) return <ClockLoader color="#bc343e" size={100} loading={true} />
+	if (isLoading) return <Loader />
 
 	return (
 		<>
