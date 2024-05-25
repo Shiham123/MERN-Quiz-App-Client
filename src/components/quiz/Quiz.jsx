@@ -11,13 +11,8 @@ import {pushResultAction} from "../../app/services/resultSlice"
 import {isQuizCheck} from "../../app/Theme/themeSlice"
 
 const Quiz = () => {
-	const {answer, queue, result, trace, isCheck} = useSelector((state) => ({
-		answer: state.question.answer,
-		queue: state.question.queue,
-		result: state.result.result,
-		trace: state.question.trace,
-		isCheck: state.theme.isCheck,
-	}))
+	const {trace, queue, answer} = useSelector((state) => state.question)
+	const {result} = useSelector((state) => state.result)
 
 	const dispatch = useDispatch()
 
@@ -39,8 +34,8 @@ const Quiz = () => {
 			<Questions />
 
 			<div className="flex justify-between items-center gap-8 my-12">
-				{trace > 0 ? <QuizBtn onClick={handlePrevQuiz} startQuizBtnText="Prev Question" /> : <></>}
-				{isCheck && <QuizBtn onClick={handleNextQuiz} startQuizBtnText="Next Question" />}
+				{trace > 0 && <QuizBtn onClick={handlePrevQuiz} startQuizBtnText="Prev Question" />}
+				<QuizBtn onClick={handleNextQuiz} startQuizBtnText="Next Question" />
 			</div>
 		</div>
 	)
