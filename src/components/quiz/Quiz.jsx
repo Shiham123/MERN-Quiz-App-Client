@@ -39,8 +39,8 @@ const Quiz = () => {
 			<Questions />
 
 			<div className="flex justify-between items-center gap-8 my-12">
-				{trace > 0 ? <QuizBtn onClick={handlePrevQuiz} startQuizBtnText="Prev" /> : <></>}
-				{isCheck && <QuizBtn onClick={handleNextQuiz} startQuizBtnText="Next" />}
+				{trace > 0 ? <QuizBtn onClick={handlePrevQuiz} startQuizBtnText="Prev Question" /> : <></>}
+				{isCheck && <QuizBtn onClick={handleNextQuiz} startQuizBtnText="Next Question" />}
 			</div>
 		</div>
 	)

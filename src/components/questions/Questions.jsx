@@ -60,8 +60,10 @@ const Questions = () => {
 					<ul key={index}>
 						<li
 							onClick={() => handleChooseAnswer(index, item)}
-							className={`my-4 py-8 bg-white text-black text-2xl text-center font-Poppins font-extrabold tracking-widest shadow-2xl border-[1px] border-[#e1e1e1] rounded-lg cursor-pointer w-[450px] flex justify-between items-center px-12 ${
-								selectedItem === item && "border-4 border-[#2bd30a]"
+							className={`my-4 py-8 bg-white text-black text-2xl text-center font-Poppins font-extrabold tracking-widest shadow-2xl rounded-lg cursor-pointer w-[450px] flex justify-between items-center px-12 ${
+								selectedItem === item
+									? "border-4 border-[#2bd30a]"
+									: "border-[1px] border-[#e1e1e1]"
 							}`}
 						>
 							<p>{item}</p>
