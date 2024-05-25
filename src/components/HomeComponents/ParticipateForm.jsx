@@ -9,22 +9,27 @@ import {setUserId} from "../../app/services/resultSlice"
 // mutations
 import {useCreateUserMutation} from "../../app/api/userApi"
 import Loader from "../../shared/Loader"
+import {useNavigate} from "react-router-dom"
 
 const ParticipateForm = () => {
 	const [createUser, {isLoading}] = useCreateUserMutation()
 	const dispatch = useDispatch()
 	const inputRef = useRef(null)
+	const navigate = useNavigate()
 
 	const submitCheckUserParticipate = (event) => {
 		event.preventDefault()
-		const username = inputRef.current.value
+		const username = inputRef.current.value.toLowerCase().replace(/\s+/g, "")
+
 		dispatch(setUserId(username))
+
 		createUser({username})
 			.then((res) => {
 				const success = res?.data?.success ?? res.error?.data?.success
 				switch (success) {
 					case true:
 						dispatch(modalOpen(false))
+						navigate("/quiz", {replace: true})
 						break
 
 					case false:

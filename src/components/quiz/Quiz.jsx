@@ -3,7 +3,6 @@ import {Navigate} from "react-router-dom"
 
 // components
 import QuizBtn from "../../shared/QuizBtn"
-import QuizHeading from "../../shared/QuizHeading"
 import Questions from "../questions/Questions"
 
 // redux components
@@ -12,13 +11,8 @@ import {pushResultAction} from "../../app/services/resultSlice"
 import {isQuizCheck} from "../../app/Theme/themeSlice"
 
 const Quiz = () => {
-	const {answer, queue, result, trace, isCheck} = useSelector((state) => ({
-		answer: state.question.answer,
-		queue: state.question.queue,
-		result: state.result.result,
-		trace: state.question.trace,
-		isCheck: state.theme.isCheck,
-	}))
+	const {trace, queue, answer} = useSelector((state) => state.question)
+	const {result} = useSelector((state) => state.result)
 
 	const dispatch = useDispatch()
 
@@ -36,14 +30,12 @@ const Quiz = () => {
 	}
 
 	return (
-		<div className="max-w-xl mx-auto my-10 flex justify-center items-center flex-col">
-			<QuizHeading headerText="Quiz section" />
-
+		<div className="my-10 flex justify-center items-center flex-col w-1/2">
 			<Questions />
 
 			<div className="flex justify-between items-center gap-8 my-12">
-				{trace > 0 ? <QuizBtn onClick={handlePrevQuiz} startQuizBtnText="Prev" /> : <></>}
-				{isCheck && <QuizBtn onClick={handleNextQuiz} startQuizBtnText="Next" />}
+				{trace > 0 && <QuizBtn onClick={handlePrevQuiz} startQuizBtnText="Prev Question" />}
+				<QuizBtn onClick={handleNextQuiz} startQuizBtnText="Next Question" />
 			</div>
 		</div>
 	)

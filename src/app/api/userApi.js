@@ -2,7 +2,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
 
 export const userApi = createApi({
 	reducerPath: "user",
-	baseQuery: fetchBaseQuery({baseUrl: "https://mern-quiz-app-server-eta.vercel.app/api"}),
+	baseQuery: fetchBaseQuery({baseUrl: "http://localhost:3000/api"}),
 	endpoints: (builder) => ({
 		getAllUser: builder.query({query: () => "/user"}),
 		createUser: builder.mutation({

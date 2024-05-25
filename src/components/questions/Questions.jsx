@@ -1,21 +1,23 @@
 import {useEffect, useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
+import {FaCheck} from "react-icons/fa"
 
 // api calling component/ or custom hook
 import useFetchQuestion from "../../hooks/useFetchQuestion.jsx"
+import Loader from "../../shared/Loader.jsx"
 
-// redux action import
+// style component import
+import style from "../../scss/Options.module.scss"
+
+// all slice import
 import {selectedValue} from "../../app/services/questionSlice.js"
 import {updateResultAction} from "../../app/services/resultSlice.js"
 import {isQuizCheck} from "../../app/Theme/themeSlice.js"
 
 const Questions = () => {
 	const [{apiData, isLoading, serverError}] = useFetchQuestion()
-	const {queue, trace, result} = useSelector((state) => ({
-		queue: state.question.queue,
-		trace: state.question.trace,
-		result: state.result.result,
-	}))
+	const {queue, trace} = useSelector((state) => state.question)
+	const {result} = useSelector((state) => state.result)
 
 	const dispatch = useDispatch()
 
@@ -35,50 +37,37 @@ const Questions = () => {
 	}
 
 	// API tracing
-	if (isLoading) return <div>...Loading</div>
-	if (serverError) return <div>Server error</div>
-	if (!apiData || apiData.length == 0) return <div>...API loading</div>
+	if (isLoading) return <Loader />
+	if (serverError) return <Loader />
+	if (!apiData || apiData.length == 0) return <Loader />
 
 	const question = queue[trace]
 
 	return (
 		<div>
-			<h2 className="font-Poppins text-2xl font-semibold">{question?.question}</h2>
-			<ul key={question?.id}>
-				{question?.options?.map((item, index) => (
-					<li key={index} className="flex justify-end items-center gap-4 flex-row-reverse">
-						<div>
-							<input
-								type="radio"
-								id={`q${index}-option`}
-								value={false}
-								name="options"
-								onChange={() => handleChooseAnswer(index, item)}
-								className="appearance-none"
-							/>
-							<label
-								htmlFor={`q${index}-option`}
-								className="font-Poppins text-xl font-semibold tracking-widest"
-							>
-								{item}
-							</label>
-						</div>
-						<div className="w-6 h-6 rounded-full border-4 border-gray-300 relative">
-							{selectedItem === item ? (
-								<div
-									className={`absolute top-[2px] left-[2px] bg-gray-400 w-3 h-3 rounded-full`}
-								></div>
-							) : result[trace] === index ? (
-								<div
-									className={`absolute top-[2px] left-[2px] bg-gray-400 w-3 h-3 rounded-full`}
-								></div>
-							) : (
-								<></>
-							)}
-						</div>
-					</li>
+			{/* question array */}
+			<h2 className="font-Poppins text-4xl font-extrabold tracking-wider">
+				{question?.question} ?
+			</h2>
+
+			{/* map the array */}
+			<div className={`${style.questionMarkBg} mt-24 flex justify-center items-center flex-col`}>
+				{question?.options.map((item, index) => (
+					<ul key={index}>
+						<li
+							onClick={() => handleChooseAnswer(index, item)}
+							className={`my-4 py-8 bg-white text-black text-2xl text-center font-Poppins font-extrabold tracking-widest shadow-2xl rounded-lg cursor-pointer w-[450px] flex justify-between items-center px-12 ${
+								selectedItem === item
+									? "border-4 border-[#2bd30a]"
+									: "border-[1px] border-[#e1e1e1]"
+							}`}
+						>
+							<p>{item}</p>
+							{selectedItem === item && <FaCheck color="#2bd30a" />}
+						</li>
+					</ul>
 				))}
-			</ul>
+			</div>
 		</div>
 	)
 }
