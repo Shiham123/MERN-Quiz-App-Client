@@ -13,6 +13,6 @@ const Illustration = () => {
 			</div>
 		</div>
 	)
-}
+} 
 
 export default Illustration
