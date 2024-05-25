@@ -9,7 +9,6 @@ const QuizBtn = (props) => {
 	return startQuizBtnText === "Prev Question" ? (
 		<button
 			onClick={onClick}
-			disabled={!isCheck}
 			className="bg-gradient-to-tr font-Poppins text-black border-[1px] border-black px-12 py-4 text-2xl tracking-widest rounded-lg flex justify-center items-center gap-4 group font-bold"
 		>
 			<FaArrowLeftLong
@@ -17,6 +16,13 @@ const QuizBtn = (props) => {
 				color="black"
 				className="transition-all duration-200 group-hover:-translate-x-2"
 			/>
+			<span>{startQuizBtnText}</span>
+		</button>
+	) : startQuizBtnText === "Restart" ? (
+		<button
+			onClick={onClick}
+			className="bg-gradient-to-tr from-[#c33741] via-[#d73e48] to-[#ed4550] font-Poppins text-white px-12 py-4 text-2xl tracking-widest rounded-lg flex justify-center items-center gap-4 group font-bold hover:bg-transparent hover:from-transparent hover:via-transparent hover:to-transparent hover:text-black hover:border-[1px] hover:border-black transition-all duration-300 ease-in-out"
+		>
 			<span>{startQuizBtnText}</span>
 		</button>
 	) : (

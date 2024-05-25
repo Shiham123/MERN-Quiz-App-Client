@@ -16,12 +16,8 @@ import {isQuizCheck} from "../../app/Theme/themeSlice.js"
 
 const Questions = () => {
 	const [{apiData, isLoading, serverError}] = useFetchQuestion()
-
-	const {queue, trace} = useSelector((state) => ({
-		queue: state.question.queue,
-		trace: state.question.trace,
-		// result: state.result.result,
-	}))
+	const {queue, trace} = useSelector((state) => state.question)
+	const {result} = useSelector((state) => state.result)
 
 	const dispatch = useDispatch()
 
