@@ -35,7 +35,7 @@ const Quiz = () => {
 	}
 
 	return (
-		<div className="max-w-xl mx-auto my-10 flex justify-center items-center flex-col">
+		<div className="my-10 flex justify-center items-center flex-col w-1/2">
 			<Questions />
 
 			<div className="flex justify-between items-center gap-8 my-12">
