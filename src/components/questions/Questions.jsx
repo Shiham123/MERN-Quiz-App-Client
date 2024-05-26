@@ -29,9 +29,6 @@ const Questions = () => {
 		dispatch(updateResultAction({trace, checked: {selectedIdx}}))
 	}, [dispatch, trace, selectedIdx])
 
-	console.log("result", result)
-	console.log("trace", trace)
-
 	const handleChooseAnswer = (index, item) => {
 		setSelectedItem(item),
 			setSelectedIdx(index),
