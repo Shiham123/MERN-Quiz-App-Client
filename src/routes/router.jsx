@@ -14,11 +14,7 @@ const router = createBrowserRouter([
 			{index: true, element: <Home />},
 			{
 				path: "/quiz",
-				element: (
-					// <PrivateRoute>
-					<QuizPage />
-					// </PrivateRoute>
-				),
+				element: <QuizPage />,
 			},
 			{path: "/result", element: <Result />},
 		],

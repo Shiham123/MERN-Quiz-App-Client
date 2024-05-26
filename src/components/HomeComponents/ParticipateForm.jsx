@@ -28,12 +28,11 @@ const ParticipateForm = () => {
 				const success = res?.data?.success ?? res.error?.data?.success
 				switch (success) {
 					case true:
-						dispatch(modalOpen(false))
-						navigate("/quiz", {replace: true})
+						dispatch(modalOpen(false)), navigate("/quiz", {replace: true})
 						break
 
 					case false:
-						dispatch(modalOpen(true))
+						dispatch(modalOpen(true)), dispatch(setUserId(null))
 						break
 
 					default:
