@@ -45,8 +45,8 @@ const Quiz = () => {
 			<Questions />
 
 			<div className="flex justify-between items-center gap-8 my-12">
-				{trace > 0 && <QuizBtn onClick={handlePrevQuiz} startQuizBtnText="Prev Question" />}
-				<QuizBtn onClick={handleNextQuiz} startQuizBtnText="Next Question" />
+				{trace > 0 && <QuizBtn onClick={() => handlePrevQuiz()} startQuizBtnText="Prev Question" />}
+				<QuizBtn onClick={() => handleNextQuiz()} startQuizBtnText="Next Question" />
 			</div>
 		</div>
 	)
