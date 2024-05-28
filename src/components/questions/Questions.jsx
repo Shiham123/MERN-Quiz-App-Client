@@ -17,18 +17,12 @@ import {isQuizCheck} from "../../app/Theme/themeSlice.js"
 const Questions = () => {
 	const [{apiData, isLoading, serverError}] = useFetchQuestion()
 	const {queue, trace} = useSelector((state) => state.question)
-	const {result} = useSelector((state) => state.result)
 
 	const dispatch = useDispatch()
 
 	// checked state control
 	const [selectedItem, setSelectedItem] = useState("")
 	const [selectedIdx, setSelectedIdx] = useState(0)
-
-	// useEffect(() => {
-	// 	console.log("result", result)
-	// 	console.log("trace", trace)
-	// }, [result, trace])
 
 	useEffect(() => {
 		dispatch(updateResultAction({trace, selectedIdx}))
