@@ -11,8 +11,7 @@ const resultSlice = createSlice({
 			state.result.push(payload)
 		},
 		updateResultAction: (state, {payload}) => {
-			const {trace, checked} = payload
-			const {selectedIdx} = checked
+			const {trace, selectedIdx} = payload
 			state.result.fill(selectedIdx, trace, trace + 1)
 		},
 		resetResultAction: () => {

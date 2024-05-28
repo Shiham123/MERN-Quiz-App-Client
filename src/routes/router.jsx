@@ -4,7 +4,6 @@ import ErrorPage from "../pages/Error/ErrorPage"
 import Home from "../pages/home/Home"
 import Result from "../components/quiz/Result"
 import QuizPage from "../components/quiz/QuizPage"
-import PrivateRoute from "./PrivateRoute"
 
 const router = createBrowserRouter([
 	{
@@ -15,11 +14,7 @@ const router = createBrowserRouter([
 			{index: true, element: <Home />},
 			{
 				path: "/quiz",
-				element: (
-					<PrivateRoute>
-						<QuizPage />
-					</PrivateRoute>
-				),
+				element: <QuizPage />,
 			},
 			{path: "/result", element: <Result />},
 		],

@@ -25,8 +25,13 @@ const Questions = () => {
 	const [selectedItem, setSelectedItem] = useState("")
 	const [selectedIdx, setSelectedIdx] = useState(0)
 
+	// useEffect(() => {
+	// 	console.log("result", result)
+	// 	console.log("trace", trace)
+	// }, [result, trace])
+
 	useEffect(() => {
-		dispatch(updateResultAction({trace, checked: {selectedIdx}}))
+		dispatch(updateResultAction({trace, selectedIdx}))
 	}, [dispatch, trace, selectedIdx])
 
 	const handleChooseAnswer = (index, item) => {
@@ -57,7 +62,7 @@ const Questions = () => {
 						<li
 							onClick={() => handleChooseAnswer(index, item)}
 							className={`my-4 py-8 bg-white text-black text-2xl text-center font-Poppins font-extrabold tracking-widest shadow-2xl rounded-lg cursor-pointer w-[450px] flex justify-between items-center px-12 ${
-								selectedItem === item || result[trace] === index
+								selectedItem === item
 									? "border-4 border-[#2bd30a]"
 									: "border-[1px] border-[#e1e1e1]"
 							}`}
