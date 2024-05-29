@@ -6,7 +6,7 @@ import QuizBtn from "../../shared/QuizBtn"
 import Questions from "../questions/Questions"
 
 // redux components
-import {moveNextAction, moveToPrevAction} from "../../app/services/questionSlice"
+import {moveNextAction} from "../../app/services/questionSlice"
 import {pushResultAction} from "../../app/services/resultSlice"
 import {isQuizCheck} from "../../app/Theme/themeSlice"
 import useFetchQuestion from "../../hooks/useFetchQuestion"
@@ -26,7 +26,7 @@ const Quiz = () => {
 			dispatch(pushResultAction(answer.index)), dispatch(isQuizCheck(false))
 	}
 
-	const handlePrevQuiz = () => dispatch(moveToPrevAction())
+	// const handlePrevQuiz = () => dispatch(moveToPrevAction())
 
 	if (result.length && result.length >= queue.length) {
 		return <Navigate to={`/result`} replace={true} />
@@ -45,7 +45,7 @@ const Quiz = () => {
 			<Questions />
 
 			<div className="flex justify-between items-center gap-8 my-12">
-				{trace > 0 && <QuizBtn onClick={() => handlePrevQuiz()} startQuizBtnText="Prev Question" />}
+				{/* {trace > 0 && <QuizBtn onClick={() => handlePrevQuiz()} startQuizBtnText="Prev Question" />} */}
 				<QuizBtn onClick={() => handleNextQuiz()} startQuizBtnText="Next Question" />
 			</div>
 		</div>

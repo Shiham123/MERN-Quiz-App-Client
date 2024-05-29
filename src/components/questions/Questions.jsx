@@ -27,7 +27,7 @@ const Questions = () => {
 
 	useEffect(() => {
 		dispatch(updateResultAction({trace, selectedIdx}))
-	}, [dispatch, trace, selectedIdx])
+	}, [dispatch, trace, selectedIdx, result])
 
 	const handleChooseAnswer = (item, index) => {
 		setSelectedItem(item),
@@ -37,9 +37,7 @@ const Questions = () => {
 	}
 
 	// API tracing
-	if (isLoading) return <Loader />
-	if (serverError) return <Loader />
-	if (!apiData || apiData.length === 0) return <Loader />
+	if (isLoading || serverError || !apiData || apiData.length === 0) return <Loader />
 
 	const question = queue[trace]
 
@@ -58,7 +56,7 @@ const Questions = () => {
 							<li
 								onClick={() => handleChooseAnswer(item, index)}
 								className={`my-4 py-8 bg-white text-black text-2xl text-center font-Poppins font-extrabold tracking-widest shadow-2xl rounded-lg cursor-pointer w-[450px] flex justify-between items-center px-12 ${
-									selectedItem === item
+									selectedItem === item || result[trace] === index
 										? "border-4 border-[#2bd30a]"
 										: "border-[1px] border-[#e1e1e1]"
 								}`}
