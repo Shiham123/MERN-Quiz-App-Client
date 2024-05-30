@@ -1,6 +1,7 @@
 import {useDispatch, useSelector} from "react-redux"
 import {Link} from "react-router-dom"
 import {useEffect} from "react"
+import {IoClose} from "react-icons/io5"
 
 // shared component
 import QuizHeading from "../../shared/QuizHeading"
@@ -41,7 +42,7 @@ const Result = () => {
 	}, [dispatch, correctAnswers, result])
 
 	return (
-		<div className={`flex justify-center items-center flex-col ${style.resultBg} py-[11rem]`}>
+		<div className={`flex justify-center items-center flex-col ${style.resultBg} py-[5rem]`}>
 			<div className={`${style.resultSecondBg} w-2/3 bg-white py-10`}>
 				<QuizHeading headerText="Quiz Result" />
 
@@ -68,10 +69,13 @@ const Result = () => {
 						<h1 className="font-Poppins text-4xl font-bold py-6 px-8 rounded-full">80 Points</h1>
 					</div>
 
-					<div>
-						<h2>Result</h2>
-						<p>You did not pass the test</p>
-						<p>Better luck next time</p>
+					<div className="flex flex-col justify-center items-center">
+						<h2 className="text-3xl font-Poppins font-semibold py-8">Result</h2>
+						<p className="bg-[#ededed] flex justify-center items-center py-4 px-8 rounded-full gap-4">
+							<IoClose color="#bc343e" size={30} />
+							<span className="font-Poppins font-semibold">You did not pass the test</span>
+						</p>
+						<p className="text-3xl font-Poppins text-[#bc343e] py-8">Better luck next time !</p>
 					</div>
 				</section>
 
