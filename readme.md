@@ -1,17 +1,25 @@
 # MERN Quiz-app
 
-This is app made for learning purpose and also practice purpose.
-
-I am implement here new technology and new feature,library for learning.
+user can participate quiz with one-time single name. If user participate another quiz then he/she have to use another name.
 
 ## Packages
 
-- React JS
+- [React JS](https://react.dev/)
+- [Redux](https://redux.js.org/)
+- [RTK Query](https://redux-toolkit.js.org/introduction/getting-started)
 
 ## configuration
 
-- ESlint
-- Prettier
-- vite Js
-- Yarn
-- Scss (CSS preprocessor)
+- [ESlint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [ViteJS](https://vitejs.dev/)
+- [Yarn](https://yarnpkg.com/)
+- [Scss (CSS preprocessor)](https://sass-lang.com/)
+
+#### [Live link](https://mern-quiz-app-shiham.netlify.app/)
+
+#### [Server link](https://mern-quiz-app-server-eta.vercel.app/)
+
+#### [Client site github repo link](https://github.com/Shiham123/MERN-Quiz-App-Client)
+
+#### [Server side github repo link](#https://github.com/Shiham123/MERN-Quiz-App-server.git)

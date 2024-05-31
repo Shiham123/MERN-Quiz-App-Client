@@ -21,7 +21,7 @@ const QuizBtn = (props) => {
 	) : startQuizBtnText === "Restart" ? (
 		<button
 			onClick={onClick}
-			className="bg-gradient-to-tr from-[#c33741] via-[#d73e48] to-[#ed4550] font-Poppins text-white px-12 py-4 text-2xl tracking-widest rounded-lg flex justify-center items-center gap-4 group font-bold hover:bg-transparent hover:from-transparent hover:via-transparent hover:to-transparent hover:text-black hover:border-[1px] hover:border-black transition-all duration-300 ease-in-out"
+			className="bg-gradient-to-tr from-[#c33741] via-[#d73e48] to-[#ed4550] font-Poppins text-white px-12 py-4 text-2xl tracking-widest rounded-lg flex justify-center items-center gap-4 group hover:bg-transparent hover:from-transparent hover:via-transparent hover:to-transparent hover:text-black hover:border-[1px] hover:border-black transition-all duration-300 ease-in-out"
 		>
 			<span>{startQuizBtnText}</span>
 		</button>
