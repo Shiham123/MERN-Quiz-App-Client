@@ -22,4 +22,4 @@ user can participate quiz with one-time single name. If user participate another
 
 #### [Client site github repo link](https://github.com/Shiham123/MERN-Quiz-App-Client)
 
-#### [Server side github repo link](#https://github.com/Shiham123/MERN-Quiz-App-server.git)
+#### [Server side github repo link](https://github.com/Shiham123/MERN-Quiz-App-server.git)
