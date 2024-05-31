@@ -1,12 +1,12 @@
 # MERN Quiz-app
 
-This is app made for learning purpose and also practice purpose.
-
-I am implement here new technology and new feature,library for learning.
+user can participate quiz with one-time single name. If user participate another quiz then he/she have to use another name.
 
 ## Packages
 
 - React JS
+- Redux
+- RTK Query
 
 ## configuration
 
