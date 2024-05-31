@@ -1,7 +1,8 @@
 import {useDispatch, useSelector} from "react-redux"
 import {Link} from "react-router-dom"
-import {useEffect} from "react"
+import {useEffect, useState} from "react"
 import {IoClose} from "react-icons/io5"
+import {FaCheck} from "react-icons/fa6"
 
 // shared component
 import QuizHeading from "../../shared/QuizHeading"
@@ -21,24 +22,29 @@ const Result = () => {
 
 	const dispatch = useDispatch()
 
+	const [isTrue, setIsTrue] = useState(0)
+
 	// reset the all action
 	const handleRestart = () => {
-		dispatch(resetResultAction(), resetAllAction())
+		dispatch(resetResultAction())
+		dispatch(resetAllAction())
 	}
 
 	useEffect(() => {
-		let isTrue = 0,
-			isFalse = 0
+		let trueCount = 0
+		let falseCount = 0
 
 		for (let i = 0; i < result.length; i++) {
 			if (result[i] === correctAnswers[i]) {
-				isTrue++
+				trueCount++
 			} else {
-				isFalse++
+				falseCount++
 			}
 		}
 
-		dispatch(getFinalResult({trueValue: isTrue, falseValue: isFalse}))
+		setIsTrue(trueCount)
+
+		dispatch(getFinalResult({trueValue: trueCount, falseValue: falseCount}))
 	}, [dispatch, correctAnswers, result])
 
 	return (
@@ -53,9 +59,13 @@ const Result = () => {
 							<h1 className="font-Poppins text-4xl font-bold py-6 px-20 bg-[#e2e2e2] rounded-full tracking-wide text-center">
 								Your score:
 							</h1>
-							<h1 className="font-Poppins text-4xl font-bold py-6 px-8 rounded-full">60% </h1>
+							<h1 className="font-Poppins text-4xl font-bold py-6 px-8 rounded-full">
+								{isTrue * 10} %
+							</h1>
 						</div>
-						<h1 className="font-Poppins text-4xl font-bold py-6 px-8 rounded-full">60 Points</h1>
+						<h1 className="font-Poppins text-4xl font-bold py-6 px-8 rounded-full">
+							{isTrue * 10} Points
+						</h1>
 					</div>
 
 					{/* div two */}
@@ -71,11 +81,23 @@ const Result = () => {
 
 					<div className="flex flex-col justify-center items-center">
 						<h2 className="text-3xl font-Poppins font-semibold py-8">Result</h2>
-						<p className="bg-[#ededed] flex justify-center items-center py-4 px-8 rounded-full gap-4">
-							<IoClose color="#bc343e" size={30} />
-							<span className="font-Poppins font-semibold">You did not pass the test</span>
-						</p>
-						<p className="text-3xl font-Poppins text-[#bc343e] py-8">Better luck next time !</p>
+						{isTrue > 8 ? (
+							<div className="flex flex-col justify-center items-center">
+								<p className="bg-[#ededed] flex justify-center items-center py-4 px-8 rounded-full gap-4">
+									<FaCheck color="#bc343e" size={30} />
+									<span className="font-Poppins font-semibold">You passed the test!</span>
+								</p>
+								<p className="text-3xl font-Poppins text-[#28a745] py-8">Congratulations!</p>
+							</div>
+						) : (
+							<div className="flex flex-col justify-center items-center">
+								<p className="bg-[#ededed] flex justify-center items-center py-4 px-8 rounded-full gap-4">
+									<IoClose color="#bc343e" size={30} />
+									<span className="font-Poppins font-semibold">You did not pass the test</span>
+								</p>
+								<p className="text-3xl font-Poppins text-[#bc343e] py-8">Better luck next time!</p>
+							</div>
+						)}
 					</div>
 				</section>
 
