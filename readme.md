@@ -20,6 +20,4 @@ user can participate quiz with one-time single name. If user participate another
 
 #### [Server link](https://mern-quiz-app-server-eta.vercel.app/)
 
-#### [Client site github repo link](https://github.com/Shiham123/MERN-Quiz-App-Client)
-
 #### [Server side github repo link](https://github.com/Shiham123/MERN-Quiz-App-server.git)
